@@ -9,12 +9,12 @@ class ChatsController < ApplicationController
 
   def show
     room  = Room.find_by(token: params[:room_token])
-    chat = room.chats.where(chat_number: params[:number])
+    chat = room.chats.find_by(chat_number: params[:number])
     if chat
       render json: {  chat: chat,
                       params: params }, status: 200
     else
-      render json: {error: "Chat not found"}
+      render json: {error: "Chat not found"}, status: 404
     end              
   end
 
@@ -22,10 +22,10 @@ class ChatsController < ApplicationController
     room  = Room.find_by(token: params[:room_token])
     chat = room.chats.new 
     if chat.save
-      render  json: { room_created: chat,
+      render  json: { chat_created: chat,
                       params: params }, status: 200
     else 
-      render json: {error: 'Error creating chat.'}
+      render json: {error: 'Error creating chat.'}, status: 404
     end
   end
 

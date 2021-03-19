@@ -22,7 +22,7 @@ class MessagesController < ApplicationController
     room = Room.find_by(token: params[:room_token])
     message = room.chats.find_by(chat_number: params[:chat_number]).messages.new(message_params)
     if message.save
-      render json: {  message: message,
+      render json: {  message_created: message,
                       params: params }, status: 200
     else
       render json: { error: "Cannot create room"}

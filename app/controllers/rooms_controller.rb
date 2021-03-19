@@ -7,13 +7,11 @@ class RoomsController < ApplicationController
 
   def show
     room = Room.find_by(token: params[:token])
-    chats = Chat.where(room_id: room.id)
     if room
       render json: {  room: room,
                       params: params }, status: 200
-     
     else 
-      render json: { error: "Room/Application not found."}
+      render json: { error: "Room/Application not found."}, status: 404
     end
 
   end
@@ -21,10 +19,10 @@ class RoomsController < ApplicationController
   def create
     room = Room.new room_params
     if room.save 
-      render json: {  room: room,
+      render json: {  room_created: room,
                       params: params }, status: 200
     else 
-      render json: { error: "Error creating room/application"}
+      render json: { error: "Error creating room/application"}, status: 404
     end 
   end
 
