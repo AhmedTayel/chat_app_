@@ -5,3 +5,17 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+require 'random_token'
+
+RandomToken.gen("%1n").to_i.times do |index|
+  room = Room.create({
+    token: RandomToken.genf(5),
+    name: "Room number: #{index+1}"
+  })
+  RandomToken.gen("%1n").to_i.times do |i|
+    chat = room.chats.create({})
+    message = chat.messages.create({
+      content: "This is a message at index: #{i+1}"
+    })
+  end
+end
