@@ -9,7 +9,7 @@ class MessagesController < ApplicationController
 
   def show
     room = Room.find_by(token: params[:room_token])
-    message = room.chats.find_by(chat_number: params[:chat_number]).messages.find_by(message_number: params[:number])
+    message = room.chats.find_by(chat_number: params[:chat_number]).messages.find_by(message_number: params[:message_number])
     if message
       render json: {  message: message,
                       params: params }, status: 200
@@ -31,7 +31,7 @@ class MessagesController < ApplicationController
 
   private 
   def message_params
-    params.require(:message).permit(:content)
+    params.require(:message).permit(:content, :message_number)
   end
   
   def message_json messages
