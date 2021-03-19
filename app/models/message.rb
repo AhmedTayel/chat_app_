@@ -4,6 +4,15 @@ class Message < ApplicationRecord
   before_create :find_order
   after_create :update_message_count
 
+  def as_json(options={})
+    {
+      # :chat_id => chat_id,
+      :message_number => message_number,
+      :content => content,
+      :created_at => created_at,
+      :updated_at => updated_at
+    }
+  end
 
   private 
   def find_order

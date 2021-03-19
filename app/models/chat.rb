@@ -6,6 +6,15 @@ class Chat < ApplicationRecord
   after_create :update_chat_count, :start_message_count
   
   
+  def as_json(options={})
+    {
+      # :room_token => Room.find_by(id: room_id).token,
+      :chat_number => chat_number,
+      :message_count => message_count,
+      :created_at => created_at,
+      :updated_at => updated_at
+    }
+  end
 
 
   private 
