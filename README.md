@@ -1,24 +1,16 @@
-# README
+# Chat app
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Initializing
 
-Things you may want to cover:
+* Setup your database, run `db:create` and `db:migrate`
+* You can config `seeds.rb` to your liking or seed as is(randomly), run `db:seed`
 
-* Ruby version
+## How to use
 
-* System dependencies
+* For GET requests, you can use cURL or a browser
+  * For a browser, just enter `URL:PORT/examples` for to request JSON objects of whatever is required.
+  * For cURL, use `curl URL:PORT/examples` to request, you can use cURL for POST requests too using `curl -X POST URL:PORT/examples -d "model[attr]="data""`
 
-* Configuration
+## Documentation 
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Please go to documentation.md for documentation.
