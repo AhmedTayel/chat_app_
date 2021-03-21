@@ -13,4 +13,4 @@
 
 ## Documentation 
 
-Please go to documentation.md for documentation.
+Please go to [documentation.md](https://github.com/AhmedTayel/chat_app_/blob/main/documentation.md) for documentation.
