@@ -21,6 +21,7 @@ class MessagesController < ApplicationController
   def create
     room = Room.find_by(token: params[:room_token])
     message = room.chats.find_by(chat_number: params[:chat_number]).messages.new(message_params)
+    message = chat.messages.new(message_params)
     if message.save
       render json: {  message_created: message,
                       params: params }, status: 200
@@ -29,9 +30,22 @@ class MessagesController < ApplicationController
     end  
   end
 
+  def update
+    room = Room.find_by(token: params[:room_token])
+    chat = room.chats.find_by(chat_number: params[:chat_number])
+    message = chat.messages.find_by(message_number: params[:message_number])
+    if message.update message_params
+      render json: { message_updated: message,
+                      params: params}, status: 200
+    else
+      render json: { error: "Couldn't update message"}, status: 404
+    end
+
+  end
+
   private 
   def message_params
-    params.require(:message).permit(:content, :message_number)
+    params.require(:message).permit(:content)
   end
   
   def message_json messages

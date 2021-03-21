@@ -25,9 +25,18 @@ class RoomsController < ApplicationController
       render json: { error: "Error creating room/application"}, status: 404
     end 
   end
+  def update
+    room = Room.find_by(token: params[:token])
+    if room.update room_params
+      render json: { room_updated: room,
+                      params: params }, status: 200 
+    else
+      render json: {error: "Could not update room."}, status: 404
+    end
+  end
 
   private 
   def room_params
-    params.require(:room).permit(:token, :name)
+    params.require(:room).permit(:name)
   end
 end
