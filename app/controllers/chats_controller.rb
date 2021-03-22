@@ -1,53 +1,33 @@
 class ChatsController < ApplicationController
-  def index
-    room  = Room.find_by(token: params[:room_token])
-    chats = room.chats
-    parsed_chats = chats_json chats
-    render json: {  chats: parsed_chats,
-                    params: params }, status: 200
+  def index 
+    chats = chats_json(get_chats params[:room_token])
+    render json: {  chats: chats}, status: 200
   end
 
   def show
-    room  = Room.find_by(token: params[:room_token])
-    chat = room.chats.find_by(chat_number: params[:number])
+    chat = get_chat(params[:room_token], params[:number])
     if chat
-      render json: {  chat: chat,
-                      params: params }, status: 200
+      render json: {  chat: chat}, status: 200
     else
       render json: {error: "Chat not found"}, status: 404
     end              
   end
 
   def create
-    room  = Room.find_by(token: params[:room_token])
-    chat = room.chats.new 
+    chat = get_chats(params[:room_token]).new 
     if chat.save
-      render  json: { chat_created: chat,
-                      params: params }, status: 200
+      render  json: { chat_created: chat}, status: 200
     else 
       render json: {error: 'Error creating chat.'}, status: 404
     end
   end
 
   def search
-    room  = Room.find_by(token: params[:room_token])
-    chat = room.chats.find_by(chat_number: params[:chat_number])
+    chat = get_chat(params[:room_token], params[:chat_number])
     query = params[:query]
-    result = Message.custom_search(query, chat.id)
-    render json: {hits: result.results.total,
-                  result: result,
-                  params: params}
+      result = Message.custom_search(query, chat.id)
+      render json: {hits: result.size,
+                    result: message_json(result)}
   end
 
-
-  private
-  def chats_json chats
-    new_chats = []
-    chats.each_with_index do |chat, index| 
-    new_chats.push({
-      index+1 => chat,
-    })
-    end
-    new_chats
-  end
 end
