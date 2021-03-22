@@ -82,7 +82,8 @@
 
 * **Data Params**
 
-  `application[name]= string`
+  `room[name]= string`
+  Please look at comment.
 
 * **Success Response:**
 
@@ -93,6 +94,9 @@
 
   * **Code:** 404 <br />
     **Content:** `{ error: "Error creating application."}`
+
+  * **Comment:**
+  * **Please note that the parameter you send POST CREATE function is titled room not application.**
 
 **Index Chats**
 ----
