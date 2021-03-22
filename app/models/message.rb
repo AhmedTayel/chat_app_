@@ -6,6 +6,7 @@ class Message < ApplicationRecord
   belongs_to :chat
   before_create :find_order
   after_create :update_message_count
+  after_create_commit { MessageBroadcastJob.perform_later(self) }
   
   settings analysis: {
     filter: {
