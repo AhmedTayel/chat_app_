@@ -32,7 +32,7 @@ class Message < ApplicationRecord
 
   def as_json(options={})
     {
-      # :chat_id => chat_id,
+      :chat_id => chat_id,
       :message_number => message_number,
       :content => content,
       :created_at => created_at,
@@ -41,25 +41,39 @@ class Message < ApplicationRecord
   end
 
   def self.custom_search(query, chat_id)
-    self.search({
-      query: {
-        bool: {
-          must: [
-          {
-            multi_match: {
-              query: query,
-              fields: [:content]
-            }
-          },
-          {
-            match: {
-              chat_id: chat_id
-            }
-          }]
-        }
-      }
-    })
+    products = []
+    after = 0
+    loop do
+      results = self.search({
+                    size: 10,
+                    query: {
+                      bool: {
+                        must: [
+                        {
+                          multi_match: {
+                            query: query,
+                            fields: [:content]
+                          }
+                        },
+                        {
+                          match: {
+                            chat_id: chat_id
+                          }
+                        }]
+                      }
+                    },
+                    search_after: [after],
+                    sort: [ {message_number: "asc"} ]
+                  }).records
+        results_amount = results.size
+        products += results
+        after += 10
+
+      break if results_amount == 0 
+    end
+    products        
   end
+
   def as_indexed_json(*)
     as_json(include: { message: { only: [:id, :content, :chat_id] } })
   end
