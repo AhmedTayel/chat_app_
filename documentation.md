@@ -257,6 +257,7 @@
     **Content:** `{"error": "Couldn't find message."}`
 * **Comment:**
   * **The number given to the json object when calling `/messages` is identical to the attribute `message_number`, use either value to fetch the desired chat.**
+
 **Create Message**
 ----
   Creates and returns json data about a created message within a chat.
@@ -283,6 +284,39 @@
 
   * **Code:** 200 <br />
     **Content:** `{"message_created":{"message_number":3,"content":"helloooo","created_at":"2021-03-19T22:38:01.000Z","updated_at":"2021-03-19T22:38:01.000Z"}}`
+
+* **Error Response:**
+
+  * **Code:** None <br />
+    **Content:** None
+
+
+**Search Messages in a chat**
+----
+  Searches for messages with a chat and returns the messages if found.
+
+* **URL**
+
+  /rooms/:token/chats/:chat_number/messages/search?query=query
+
+* **Method:**
+
+  `GET`
+  
+*  **URL Params**
+
+   **Required:**
+
+   `query=string`
+
+* **Data Params**
+
+  None
+
+* **Success Response:**
+
+  * **Code:** 200 <br />
+    **Content:** `{"hits":1,"result":[{"_index":"messages","_type":"_doc","_id":"1","_score":1.023669,"_source":{"chat_id":1,"message_number":1,"content":"This is a message at index: 1","created_at":"2021-03-22T00:14:50.000Z","updated_at":"2021-03-22T00:14:50.000Z"}}]}`
 
 * **Error Response:**
 
