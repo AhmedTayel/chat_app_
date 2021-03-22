@@ -2,7 +2,9 @@ Rails.application.routes.draw do
 
   resources :rooms, param: :token, only: [:index, :show, :create] do
    resources :chats, param: :number, only: [:index, :show, :create] do 
+    get 'messages/search', to: 'chats#search'
     resources :messages, param: :message_number, only: [:index, :show, :create]
+     
    end
   end
 

@@ -29,6 +29,17 @@ class ChatsController < ApplicationController
     end
   end
 
+  def search
+    room  = Room.find_by(token: params[:room_token])
+    chat = room.chats.find_by(chat_number: params[:chat_number])
+    query = params[:query]
+    result = Message.custom_search(query, chat.id)
+    render json: {hits: result.results.total,
+                  result: result,
+                  params: params}
+  end
+
+
   private
   def chats_json chats
     new_chats = []
