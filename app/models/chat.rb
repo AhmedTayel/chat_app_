@@ -28,7 +28,7 @@ class Chat < ApplicationRecord
   end
   def update_chat_count
     room = Room.find_by(id: self.room_id)
-    room.update(chat_count: Chat.where(room_id: room.id).count)
+    room.update(chat_count: Chat.where(room_id: room.id).size)
   end
   def start_message_count
     self.update(message_count: 0)

@@ -88,6 +88,6 @@ class Message < ApplicationRecord
   end
   def update_message_count
     chat = Chat.find_by(id: self.chat_id)
-    chat.update(message_count: Message.where(chat_id: chat.id).count)
+    chat.update(message_count: Message.where(chat_id: chat.id).size)
   end
 end

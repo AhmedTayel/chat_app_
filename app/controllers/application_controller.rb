@@ -1,11 +1,14 @@
 class ApplicationController < ActionController::API
   private 
+  def load_rooms
+    Room.includes(:chats)
+  end
   def get_room token
-    Room.find_by(token: token)
+    load_rooms.find_by(token: token)
   end
 
   def get_chats token
-    Room.find_by(token: token).chats
+    load_rooms.find_by(token: token).chats.includes(:messages)
   end
 
   def get_chat token, chat_number
