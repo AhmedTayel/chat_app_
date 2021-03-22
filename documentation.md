@@ -1,10 +1,10 @@
-**Index Rooms**
+**Index Applications**
 ----
-  Returns json data about all rooms.
+  Returns json data about all applications.
 
 * **URL**
 
-  /rooms
+  /applications
 
 * **Method:**
 
@@ -23,7 +23,7 @@
 * **Success Response:**
 
   * **Code:** 200 <br />
-    **Content:** `{"rooms":[{"token":"5d2RR","name":"Room number: 1","chat_count":1,"created_at":"2021-03-19T21:21:46.000Z","updated_at":"2021-03-19T21:21:47.000Z"},...}]}`
+    **Content:** `{"applications":[{"token":"5d2RR","name":"Application number: 1","chat_count":1,"created_at":"2021-03-19T21:21:46.000Z","updated_at":"2021-03-19T21:21:47.000Z"},...}]}`
  
 * **Error Response:**
 
@@ -32,11 +32,11 @@
 
 **Show Room**
 ----
-  Returns json data about requested room.
+  Returns json data about requested application.
 
 * **URL**
 
-  /rooms/:token
+  /applications/:token
 
 * **Method:**
 
@@ -55,20 +55,20 @@
 * **Success Response:**
 
   * **Code:** 200 <br />
-    **Content:** `{"room":{"token":"5d2RR","name":"Room number: 1","chat_count":1,"created_at":"2021-03-19T21:21:46.000Z","updated_at":"2021-03-19T21:21:47.000Z"}}`
+    **Content:** `{"application":{"token":"5d2RR","name":"Application number: 1","chat_count":1,"created_at":"2021-03-19T21:21:46.000Z","updated_at":"2021-03-19T21:21:47.000Z"}}`
  
 * **Error Response:**
 
   * **Code:** 404 <br />
-    **Content:** `{"error":"Room/Application not found."}`
+    **Content:** `{"error":"Application not found."}`
 
 **Create Room**
 ----
-  Creates and returns json data about requested room.
+  Creates and returns json data about requested application.
 
 * **URL**
 
-  /rooms/
+  /applications/
 
 * **Method:**
 
@@ -82,25 +82,25 @@
 
 * **Data Params**
 
-  `room[name]= string`
+  `application[name]= string`
 
 * **Success Response:**
 
   * **Code:** 200 <br />
-    **Content:** `{"room_created":{"token":"7rYLR","name":"createdRoom","chat_count":0,"created_at":"2021-03-19T22:06:57.000Z","updated_at":"2021-03-19T22:06:57.000Z"}}`
+    **Content:** `{"application_created":{"token":"7rYLR","name":"createdApplication","chat_count":0,"created_at":"2021-03-19T22:06:57.000Z","updated_at":"2021-03-19T22:06:57.000Z"}}`
  
 * **Error Response:**
 
   * **Code:** 404 <br />
-    **Content:** `{ error: "Error creating room/application"}`
+    **Content:** `{ error: "Error creating application."}`
 
 **Index Chats**
 ----
-  Returns json data about requested chats within a room.
+  Returns json data about requested chats within a application.
 
 * **URL**
 
-  /rooms/:token/chats
+  /applications/:token/chats
 
 * **Method:**
 
@@ -128,11 +128,11 @@
 
 **Show Chats**
 ----
-  Returns json data about requested chats within a room.
+  Returns json data about requested chats within a application.
 
 * **URL**
 
-  /rooms/:token/chats/:chat_number
+  /applications/:token/chats/:chat_number
 
 * **Method:**
 
@@ -162,11 +162,11 @@
 
 **Create Chat**
 ----
-  Creates and returns json data about created chat within a room.
+  Creates and returns json data about created chat within a application.
 
 * **URL**
 
-  /rooms/:token/chats/:chat_number
+  /applications/:token/chats/:chat_number
 
 * **Method:**
 
@@ -198,7 +198,7 @@
 
 * **URL**
 
-  /rooms/:token/chats/:chat_number/messages
+  /applications/:token/chats/:chat_number/messages
 
 * **Method:**
 
@@ -230,7 +230,7 @@
 
 * **URL**
 
-  /rooms/:token/chats/:chat_number/messages/:message_number
+  /applications/:token/chats/:chat_number/messages/:message_number
 
 * **Method:**
 
@@ -264,7 +264,7 @@
 
 * **URL**
 
-  /rooms/:token/chats/:chat_number/messages/
+  /applications/:token/chats/:chat_number/messages/
 
 * **Method:**
 
@@ -297,7 +297,7 @@
 
 * **URL**
 
-  /rooms/:token/chats/:chat_number/messages/search?query=query
+  /applications/:token/chats/:chat_number/messages/search?query=query
 
 * **Method:**
 

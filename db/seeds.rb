@@ -13,7 +13,7 @@ seed2 = RandomToken.gen("%1n").to_i
 seed1.times do |index|
   room = Room.create({
     token: RandomToken.genf(5),
-    name: "Room number: #{index+1}"
+    name: "Application number: #{index+1}"
   })
   seed2.times do |i|
     chat = room.chats.create({})
