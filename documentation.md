@@ -129,39 +129,7 @@
 
   * **Code:** 404 <br />
     **Content:** `{ error: "Error updating application."}`
-
-**Show Room**
-----
-  Returns json data about requested application.
-
-* **URL**
-
-  /applications/:token
-
-* **Method:**
-
-  `GET`
-  
-*  **URL Params**
     
-   **Required:**
-
-   `token=string`
-
-* **Data Params**
-
-  None
-
-* **Success Response:**
-
-  * **Code:** 200 <br />
-    **Content:** `{"application":{"token":"5d2RR","name":"Application number: 1","chat_count":1,"created_at":"2021-03-19T21:21:46.000Z","updated_at":"2021-03-19T21:21:47.000Z"}}`
- 
-* **Error Response:**
-
-  * **Code:** 404 <br />
-    **Content:** `{"error":"Application not found."}`
-
 **Index Chats**
 ----
   Returns json data about requested chats within a application.
