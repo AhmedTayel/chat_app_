@@ -30,7 +30,7 @@
   * **Code:** None <br />
     **Content:** Returns empty array.
 
-**Show Room**
+**Show Application**
 ----
   Returns json data about requested application.
 
@@ -62,7 +62,7 @@
   * **Code:** 404 <br />
     **Content:** `{"error":"Application not found."}`
 
-**Create Room**
+**Create Application**
 ----
   Creates and returns json data about requested application.
 
@@ -161,6 +161,7 @@
 
   * **Code:** 404 <br />
     **Content:** `{"error":"Application not found."}`
+
 **Index Chats**
 ----
   Returns json data about requested chats within a application.
@@ -193,7 +194,7 @@
   * **Code:** None <br />
     **Content:** Returns empty array.
 
-**Show Chats**
+**Show Chat**
 ----
   Returns json data about requested chats within a application.
 
@@ -388,6 +389,7 @@
 
   * **Code:** 404 <br />
     **Content:** `{ error: "Error updating message."}`
+
 **Search Messages in a chat**
 ----
   Searches for messages with a chat and returns the messages if found.
