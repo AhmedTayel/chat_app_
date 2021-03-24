@@ -22,6 +22,8 @@ gem 'puma', '~> 3.0'
 # Elastic Seearch 
 gem 'elasticsearch-model'
 gem 'elasticsearch-rails'
+# Faker dummy info
+gem 'faker', '~> 2.17'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

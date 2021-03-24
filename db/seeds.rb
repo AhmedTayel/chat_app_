@@ -6,19 +6,30 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 require 'random_token'
+require 'faker'
 
-seed1 = RandomToken.gen("%1n").to_i
-seed2 = RandomToken.gen("%1n").to_i
+seed1 = 10
+seed2 = 10
+seed3 = 10
 
 seed1.times do |index|
   room = Room.create({
     token: RandomToken.genf(5),
-    name: "Application number: #{index+1}"
+    name: Faker::JapaneseMedia::DragonBall.character
   })
   seed2.times do |i|
     chat = room.chats.create({})
-    message = chat.messages.create({
-      content: "This is a message at index: #{i+1}"
-    })
+    seed3.times do |x|
+      message = chat.messages.create({
+        content: Faker::Quote.most_interesting_man_in_the_world
+      })
+    end
   end
 end
+
+
+## Don't change
+Message.__elasticsearch__.delete_index!
+Message.__elasticsearch__.create_index!
+Message.import force: true
+## Don't change
