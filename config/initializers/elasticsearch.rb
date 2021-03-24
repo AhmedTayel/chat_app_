@@ -1,3 +1,1 @@
-Elasticsearch::Model.client = Elasticsearch::Client.new({
-  log: true
-})
+Elasticsearch::Model.client = Elasticsearch::Client.new(host: ENV.fetch('ELASTICSEARCH_HOST', 'localhost'))

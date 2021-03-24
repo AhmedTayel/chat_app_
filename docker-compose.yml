@@ -1,0 +1,56 @@
+version: "3.7"
+services:
+ mysql:
+   image: "mysql:5.7"
+   environment:
+     MYSQL_ROOT_PASSWORD: root
+     MYSQL_USERNAME: root
+     MYSQL_PASSWORD: root
+   ports:
+      - "3307:3306"
+ app:
+   links:
+      - elasticsearch
+      - mysql
+   build: .
+   ports:
+      - "3000:3000"
+   environment:
+     DB_USERNAME: root
+     ELASTICSEARCH_HOST: elasticsearch
+     DB_PASSWORD: root
+     DB_DATABASE: ChatAPI
+     DB_PORT: 3306
+     working_dir: /app
+     DB_HOST: mysql
+     RAILS_ENV: development
+     RAILS_MAX_THREADS: 50
+   volumes:
+      - ".:/app"
+      - "./config/docker/database.yml:/app/config/database.yml"
+
+ elasticsearch:
+   image: docker.elastic.co/elasticsearch/elasticsearch:7.0.0
+   hostname: elasticsearch
+   environment:
+      - node.name=elasticsearch
+      - discovery.type=single-node
+      - cluster.name=docker-cluster
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - xpack.security.enabled=false
+      - xpack.monitoring.enabled=false
+      - xpack.graph.enabled=false
+      - xpack.watcher.enabled=false
+   ports:
+      - "9200:9200"
+      - "9300:9300"
+   volumes:
+      - elasticsearch22:/usr/share/elasticsearch/data
+   links: 
+      - mysql
+volumes:
+ mysql:
+ gem_cache:
+ node_modules:
+ elasticsearch22:
