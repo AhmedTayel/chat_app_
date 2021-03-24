@@ -97,6 +97,7 @@
 
   * **Comment:**
   * **Please note that the parameter you send POST CREATE function is titled room not application.**
+
 **Update Application**
 ----
   Update and returns json data about an application.
