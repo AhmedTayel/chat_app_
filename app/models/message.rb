@@ -12,8 +12,8 @@ class Message < ApplicationRecord
     filter: {
       edge_ngram_filter: {
         type: "edge_ngram",
-        min_gram: "3",
-        max_gram: "20",
+        min_gram: "1",
+        max_gram: "10",
       }
     },
     analyzer: {
@@ -25,7 +25,7 @@ class Message < ApplicationRecord
     }
   } do
     mappings dynamic: true do
-      indexes :content, type: :text, analyzer: "edge_ngram_analyzer"
+      indexes :content, type: :text, analyzer: "edge_ngram_analyzer", search_analyzer: "standard"
       # indexes :chat_id, type: :long
     end
   end
