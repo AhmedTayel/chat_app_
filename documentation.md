@@ -95,7 +95,7 @@
   * **Code:** 404 <br />
     **Content:** `{ error: "Error creating application."}`
 
-  * **Comment:**
+* **Comment:**
   * **Please note that the parameter you send POST CREATE function is titled room not application.**
 
 **Update Application**
@@ -129,7 +129,7 @@
 
   * **Code:** 404 <br />
     **Content:** `{ error: "Error updating application."}`
-    
+
 **Index Chats**
 ----
   Returns json data about requested chats within a application.
