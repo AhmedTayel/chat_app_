@@ -2,7 +2,7 @@
 
 ## Run
 
-Run `docker compose up`
+Run `docker-compose up`
 The application is seeded automatically.
 
 Please note that the model `Room` is `Applicaiton` in the requirments.
